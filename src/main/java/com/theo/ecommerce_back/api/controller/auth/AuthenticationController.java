@@ -1,5 +1,7 @@
 package com.theo.ecommerce_back.api.controller.auth;
 
+import com.theo.ecommerce_back.api.model.LoginBody;
+import com.theo.ecommerce_back.api.model.LoginResponse;
 import com.theo.ecommerce_back.api.model.RegistrationBody;
 import com.theo.ecommerce_back.exception.UserAlreadyExistException;
 import com.theo.ecommerce_back.model.LocalUser;
@@ -27,6 +29,37 @@ public class AuthenticationController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> loginUser(@Valid @RequestBody LoginBody loginBody){
+        String jwt = userService.loginUser(loginBody);
+        if(jwt == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }else{
+            LoginResponse response = new LoginResponse();
+            response.setJwt(jwt);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
