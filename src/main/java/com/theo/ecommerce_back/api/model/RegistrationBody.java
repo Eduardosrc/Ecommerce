@@ -11,7 +11,7 @@ public class RegistrationBody {
     private String username;
 
     @NotBlank
-    @Size(min = 6, max = 32)
+    @Size(max = 32)
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$", message = "Mínimo 6 letras y un número")
     private String password;
 
