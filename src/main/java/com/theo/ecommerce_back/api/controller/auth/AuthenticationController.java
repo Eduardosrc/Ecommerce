@@ -9,6 +9,7 @@ import com.theo.ecommerce_back.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,6 +42,18 @@ public class AuthenticationController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }
+
+    @GetMapping("/me")
+    public LocalUser getLoggedInUserProfile(@AuthenticationPrincipal LocalUser user){
+        return user;
+    }
+
+
+
+
+
+
+
 
 
 
