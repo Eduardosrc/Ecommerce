@@ -1,5 +1,6 @@
 package com.theo.ecommerce_back.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class LocalUser {
     @Column(unique = true, nullable = false)
     private String username;
 
+    @JsonIgnore
     @Column(unique = true, length = 1000, nullable = false)
     private String password;
 
@@ -32,6 +34,7 @@ public class LocalUser {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "localUser", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
